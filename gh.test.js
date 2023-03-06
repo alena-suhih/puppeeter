@@ -1,4 +1,7 @@
 let page;
+beforeEach(async () => {
+  page = await browser.newPage();
+});
 
 afterEach(() => {
   page.close();
@@ -6,12 +9,7 @@ afterEach(() => {
 
 describe("Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
-  });
-
-  afterEach(() => {
-    page.close();
   });
 
   test("The h1 header content'", async () => {
@@ -38,7 +36,6 @@ describe("Github page tests", () => {
 });
 
 test("The h1 header content About page", async () => {
-  page = await browser.newPage();
   await page.goto("https://github.com/about");
   await page.$("header div div a");
   await page.waitForSelector("h1");
@@ -47,7 +44,6 @@ test("The h1 header content About page", async () => {
 }, 60000);
 
 test("The h1 header content Skills page", async () => {
-  page = await browser.newPage();
   await page.goto("https://skills.github.com/");
   await page.$("header div div a");
   await page.waitForSelector("h1");
@@ -56,7 +52,6 @@ test("The h1 header content Skills page", async () => {
 }, 60000);
 
 test("The h1 header content Services page", async () => {
-  page = await browser.newPage();
   await page.goto("https://github.com/services/");
   await page.$("header div div a");
   await page.waitForSelector("h1");
